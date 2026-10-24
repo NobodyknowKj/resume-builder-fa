@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رزومه‌ساز حرفه‌ای | ساخت رزومه گرافیکی + PDF و عکس برای اپلای</title>
+<meta name="description" content="رزومه‌ساز حرفه‌ای فارسی: با پرسش‌نامه مرحله‌ای بر اساس اصول روز رزومه‌نویسی ۲۰۲۶ و ATS، در چند دقیقه رزومه گرافیکی بسازید و خروجی PDF و عکس PNG بگیرید.">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+*{box-sizing:border-box} :root{--accent:#1d4ed8;--bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#64748b;--line:#e2e8f0}
+body{margin:0;font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var(--text)}
+a{color:var(--accent)}
+.top{background:#0f172a;color:#fff;padding:22px 16px 18px}
+.top-inner{max-width:1180px;margin:auto}
+.top h1{margin:0 0 6px;font-size:26px;font-weight:900}
+.top p{margin:0;color:#cbd5e1;line-height:1.9;font-size:14.5px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.badges span{background:#1e293b;border:1px solid #334155;border-radius:99px;padding:5px 11px;font-size:12.5px}
+.wrap{max-width:1180px;margin:auto;padding:18px 14px 40px;display:grid;grid-template-columns:1fr 460px;gap:18px;align-items:start}
+@media(max-width:900px){.wrap{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 4px 20px rgba(15,23,42,.05)}
+.steps{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.steps button{border:1px solid var(--line);background:#f8fafc;border-radius:99px;padding:7px 12px;font-family:inherit;cursor:pointer;font-size:13px}
+.steps button.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700}
+label{display:block;font-size:13px;font-weight:700;margin:12px 0 5px}
+input,select,textarea{width:100%;border:1px solid #cbd5e1;border-radius:11px;padding:10px 12px;font-family:inherit;font-size:14px;background:#fff}
+textarea{min-height:86px;resize:vertical;line-height:1.8}
+textarea.small{min-height:58px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.grid2{grid-template-columns:1fr}}
+.tip{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:11px 13px;font-size:13px;line-height:1.9;color:#1e3a5f;margin:12px 0}
+.tip b{color:#1d4ed8}
+.btn{border:0;border-radius:11px;padding:11px 16px;font-family:inherit;font-weight:800;cursor:pointer;font-size:14px}
+.btn-p{background:var(--accent);color:#fff}.btn-g{background:#e2e8f0}.btn-d{background:#0f172a;color:#fff}.btn-o{background:#fff;border:1px solid #cbd5e1}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
+.chips button{border:1px solid #cbd5e1;background:#fff;border-radius:99px;padding:6px 11px;font-family:inherit;cursor:pointer;font-size:12.5px}
+.chips button:hover{border-color:var(--accent);color:var(--accent)}
+.item{border:1px solid var(--line);border-radius:13px;padding:12px;margin-top:10px;background:#f8fafc}
+.item h4{margin:0 0 8px;font-size:14px}
+.del{color:#dc2626;background:none;border:0;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:700}
+.score{border-radius:13px;padding:13px;background:#f0fdf4;border:1px solid #bbf7d0}
+.score b{font-size:20px}.score ul{margin:8px 0 0;padding-right:18px;font-size:13px;line-height:1.9;color:#334155}
+.themes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.themes button{border:2px solid var(--line);border-radius:12px;padding:10px 6px;font-family:inherit;cursor:pointer;background:#fff;font-size:12.5px}
+.themes button.on{border-color:var(--accent);outline:2px solid #bfdbfe}
+.dot{display:inline-block;width:16px;height:16px;border-radius:50%;vertical-align:middle;margin-left:5px}
+.preview-wrap{position:sticky;top:14px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+/* ===== Resume sheet ===== */
+.sheet{background:#fff;border:1px solid #cbd5e1;min-height:640px;overflow:hidden;--acc:var(--accent)}
+.sheet .head{padding:26px 28px 18px;border-bottom:3px solid var(--acc)}
+.sheet h2{margin:0;font-size:28px;line-height:1.3}
+.sheet .title{color:var(--acc);font-weight:800;margin-top:4px;font-size:16px}
+.sheet .contact{font-size:12.5px;color:#475569;margin-top:10px;line-height:1.9;direction:rtl}
+.sheet .body{padding:20px 28px 26px}
+.sheet.ltr{direction:ltr;text-align:left}.sheet.ltr .contact{direction:ltr}
+.sheet h3{font-size:14.5px;color:var(--acc);border-bottom:1px solid #e2e8f0;padding-bottom:5px;margin:18px 0 8px}
+.sheet h3:first-child{margin-top:0}
+.sheet p,.sheet li{font-size:13.5px;line-height:1.9;color:#1e293b}
+.sheet ul{margin:6px 0;padding-right:18px}.sheet.ltr ul{padding-right:0;padding-left:18px}
+.job{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.job b{font-size:14px}.job span{font-size:12.5px;color:#64748b}
+.skill-tags{display:flex;gap:6px;flex-wrap:wrap}
+.skill-tags span{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:99px;padding:4px 10px;font-size:12.5px}
+/* two-column layout */
+.sheet.layout-two .body{display:grid;grid-template-columns:1.7fr 1fr;gap:24px}
+.sheet.layout-two .side{background:#f8fafc;border-radius:12px;padding:14px;height:fit-content}
+/* ATS layout: plain, single column, black */
+.sheet.layout-ats{--acc:#111827}.sheet.layout-ats .head{border-bottom:2px solid #111827}.sheet.layout-ats .skill-tags span{background:#fff}
+.sheet.layout-ats h2{font-size:26px}
+@media print{
+ body{background:#fff}.top,.wrap>.card,.preview-wrap>.actions,.preview-wrap>.card.score-card,.no-print{display:none!important}
+ .wrap{display:block;padding:0;max-width:none}.preview-wrap{position:static}
+ .sheet{border:0;min-height:auto;box-shadow:none}
+ @page{size:A4;margin:0}
+}
+.faq{font-size:13.5px;line-height:2;color:#334155}
+.faq b{color:#0f172a}
+.small{font-size:12.5px;color:var(--muted);line-height:1.8}
+footer{text-align:center;color:#64748b;font-size:12.5px;padding:10px 0 30px;line-height:1.9}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-inner">
+<h1>✦ رزومه‌ساز حرفه‌ای</h1>
+<p>به‌جای یک فرم خشک، قدم‌به‌قدم از شما سوال می‌پرسیم؛ طبق اصول روز رزومه‌نویسی ۲۰۲۶: خلاصه‌ی کوتاه و هدفمند، دستاوردهای عددی با فرمول فعل + کار + نتیجه، کلمات کلیدی آگهی شغلی، تیترهای استاندارد برای عبور از ATS، و حداکثر ۱ تا ۲ صفحه. در پایان رزومه‌ی گرافیکی را به‌صورت <b style="color:#fff">PDF و عکس PNG</b> تحویل بگیرید.</p>
+<div class="badges"><span>✓ سازگار با ATS</span><span>✓ ۶ تم حرفه‌ای</span><span>✓ ۱۲ حوزه کاری</span><span>✓ فارسی و انگلیسی</span><span>✓ بدون نیاز به ثبت‌نام — اطلاعات فقط در مرورگر شما می‌ماند</span></div>
+</div></header>
+
+<main class="wrap">
+<section class="card">
+<div class="steps" id="steps"></div>
+<div id="stepBox"></div>
+<div class="row no-print">
+<button class="btn btn-g" onclick="prevStep()">← مرحله قبل</button>
+<button class="btn btn-p" onclick="nextStep()">مرحله بعد →</button>
+<button class="btn btn-o" onclick="loadSample()">پر کردن با نمونه آماده</button>
+<button class="btn btn-o" onclick="clearAll()">پاک کردن همه</button>
+</div>
+<div class="tip"><b>اصل طلایی ۲۰۲۶:</b> کارفرما اول «نتیجه» را می‌خواند، نه شرح وظایف را. به‌جای «مسئول پیج اینستاگرام بودم» بنویسید: «با استراتژی محتوایی، تعامل پیج را در ۶ ماه ۶۷٪ بالا بردم.» هر بولت = فعل کنشی + کاری که کردید + عدد + بازه زمانی.</div>
+<div class="card score" style="margin-top:14px">
+<div>امتیاز رزومه شما: <b id="scoreNum">0</b> / ۱۰۰</div>
+<ul id="scoreList"></ul>
+</div>
+</section>
+
+<aside class="preview-wrap">
+<div class="actions no-print">
+<button class="btn btn-d" onclick="downloadPDF()">⬇ دانلود PDF</button>
+<button class="btn btn-p" onclick="downloadPNG()">🖼 دانلود عکس PNG</button>
+<button class="btn btn-o" onclick="copyPlain()">📋 کپی متن ساده (برای ATS)</button>
+<button class="btn btn-o" onclick="saveLocal()">💾 ذخیره در مرورگر</button>
+</div>
+<p class="small no-print">پیش‌نمایش زنده است؛ هر تغییری فوراً اینجا دیده می‌شود. برای PDF، مرورگر پنجره چاپ را باز می‌کند — گزینه «Save as PDF» را بزنید. عکس PNG کل رزومه را با کیفیت بالا ذخیره می‌کند.</p>
+<div class="sheet" id="sheet"><div id="resumeOut"></div></div>
+</aside>
+</main>
+
+<section class="wrap" style="display:block;max-width:1180px">
+<div class="card faq">
+<h2 style="margin-top:0">اصول بروز رزومه‌نویسی که این ابزار رعایت می‌کند</h2>
+<p><b>۱) یک رزومه برای هر آگهی:</b> خلاصه و مهارت‌ها را با کلمات دقیق همان آگهی تنظیم کنید؛ رزومه عمومی برای ۵۰ آگهی، از رزومه‌ی تنظیم‌شده برای ۵ آگهی ضعیف‌تر عمل می‌کند.<br>
+<b>۲) تیترهای استاندارد:</b> Professional Summary ،Work Experience ،Education ،Skills — نه تیترهای خلاقانه‌ای که ATS نمی‌فهمد.<br>
+<b>۳) فونت و قالب ساده برای ATS:</b> در حالت ATS، تک‌ستون، فونت استاندارد و بدون جدول و عکس داخل متن؛ نسخه گرافیکی را برای ارسال مستقیم به کارفرما یا لینکدین نگه دارید.<br>
+<b>۴) خلاصه ۳ تا ۵ جمله‌ای:</b> رشته و سطح + ۲ دستاورد عددی + سمتی که دنبالش هستید؛ بدون صفت‌های کلی مثل «پویا و نتیجه‌گرا».<br>
+<b>۵) طول:</b> تازه‌کارها ۱ صفحه، با تجربه‌ها حداکثر ۲ صفحه؛ هر شغل اخیر ۴ تا ۶ بولت، شغل‌های قدیمی ۲ تا ۳ بولت.<br>
+<b>۶) صداقت در عدد:</b> عدد کوچک دقیق («۱۲ قرارداد در ۲۰۲۵») از ادعای بزرگ مبهم («قراردادهای بزرگ متعدد») معتبرتر است. اگر عدد ندارید، خروجی مشخص را بنویسید.</p>
+<p class="small">منبع اصول: راهنماهای ATS سال ۲۰۲۶ درباره‌ی کلمات کلیدی آگهی، تیترهای استاندارد، دستاوردهای کمی و فرمت تک‌ستون متنی برای PDF.</p>
+</div>
+</section>
+<footer>ساخته‌شده برای اپلای — اطلاعات شما به هیچ سروری فرستاده نمی‌شود و فقط در همین صفحه و مرورگر خودتان ذخیره می‌شود.</footer>
+<script>
+const FIELDS={
+"نرم‌افزار و فناوری اطلاعات":{titles:["توسعه‌دهنده فرانت‌اند","توسعه‌دهنده بک‌اند","مهندس نرم‌افزار","توسعه‌دهنده موبایل"],skills:["JavaScript","React","Python","Git","REST API","SQL","TypeScript","Docker"],prompts:["سرعت لود یا عملکرد را چند درصد بهبود دادید؟","چند کاربر / درخواست را پشتیبانی می‌کردید؟","چه باگی یا فرآیندی را خودکار کردید و چقدر زمان ذخیره شد؟"]},
+"طراحی گرافیک و UI/UX":{titles:["طراح UI/UX","طراح گرافیک","طراح محصول"],skills:["Figma","Adobe Photoshop","Illustrator","Design System","Prototyping","User Research","Typography"],prompts:["نرخ تبدیل یا رضایت کاربر بعد از بازطراحی چقدر شد؟","چند صفحه / محصول طراحی کردید؟","تست کاربر با چند نفر انجام شد؟"]},
+"بازاریابی دیجیتال":{titles:["متخصص سئو","مدیر بازاریابی دیجیتال","کارشناس شبکه‌های اجتماعی"],skills:["SEO","Google Analytics","Content Marketing","Instagram","Google Ads","Email Marketing","A/B Testing"],prompts:["ترافیک یا فالوور از چند به چند رسید؟","نرخ تبدیل چند درصد شد؟","بودجه تبلیغات و بازگشت سرمایه (ROAS) چقدر بود؟"]},
+"فروش":{titles:["کارشناس فروش","مدیر فروش","کارشناس فروش سازمانی"],skills:["Negotiation","CRM","B2B Sales","Cold Calling","Salesforce","Upselling"],prompts:["چند درصد بالاتر از تارگت فروختید؟","چند قرارداد / مشتری جدید آوردید؟","ارزش قراردادها چقدر بود؟"]},
+"مالی و حسابداری":{titles:["حسابدار","تحلیلگر مالی","مدیر مالی"],skills:["Excel","Financial Modeling","Accounting","Tax","QuickBooks","Budgeting"],prompts:["چقدر هزینه کاهش یا خطا کم شد؟","چند گزارش / صورت مالی تهیه می‌کردید؟","بودجه تحت مدیریت چقدر بود؟"]},
+"مهندسی":{titles:["مهندس عمران","مهندس مکانیک","مهندس برق","مهندس پروژه"],skills:["AutoCAD","Project Management","Safety","SolidWorks","Quality Control"],prompts:["پروژه با چه بودجه و متراژی بود؟","زمان تحویل چقدر جلو افتاد؟","چند نفر / پیمانکار را مدیریت می‌کردید؟"]},
+"منابع انسانی":{titles:["کارشناس منابع انسانی","مدیر منابع انسانی","کارشناس جذب و استخدام"],skills:["Recruitment","Onboarding","HRIS","Interviewing","Employee Relations"],prompts:["چند نفر استخدام کردید و در چه مدت؟","نرخ ماندگاری چقدر شد؟","زمان استخدام چند روز کم شد؟"]},
+"پزشکی و سلامت":{titles:["پرستار","پزشک","کارشناس آزمایشگاه"],skills:["Patient Care","Clinical Documentation","Emergency Care","Medical Records"],prompts:["روزانه چند بیمار را پوشش می‌دادید؟","چه فرآیندی بهبود یافت؟","رضایت بیمار چقدر شد؟"]},
+"آموزش":{titles:["معلم","مدرس","مدیر آموزشی"],skills:["Curriculum Design","Classroom Management","Online Teaching","Assessment"],prompts:["چند دانش‌آموز / دانشجو داشتید؟","نمره یا قبولی چقدر بهتر شد؟","چند دوره طراحی کردید؟"]},
+"حقوق":{titles:["وکیل","کارشناس حقوقی","مشاور حقوقی"],skills:["Legal Research","Contract Drafting","Litigation","Compliance"],prompts:["چند پرونده / قرارداد مدیریت شد؟","چه مبلغی صرفه‌جویی یا وصول شد؟","ریسک حقوقی چطور کاهش یافت؟"]},
+"مدیریت محصول و پروژه":{titles:["مدیر محصول","مدیر پروژه","اسکرام مستر"],skills:["Agile","Scrum","Roadmap","Jira","Stakeholder Management","Prioritization"],prompts:["محصول به چند کاربر رسید؟","تحویل چقدر سریع‌تر شد؟","چند تیم / ذی‌نفع را هماهنگ می‌کردید؟"]},
+"داده و هوش مصنوعی":{titles:["تحلیلگر داده","دانشمند داده","مهندس یادگیری ماشین"],skills:["Python","SQL","Pandas","Machine Learning","Power BI","Statistics"],prompts:["دقت مدل از چند به چند رسید؟","چه حجمی از داده پردازش شد؟","تصمیم تجاری با چه اثری گرفته شد؟"]},
+"عمومی / دانشجویی":{titles:["کارورز","دستیار","کارشناس"],skills:["Communication","Teamwork","Time Management","Microsoft Office","Problem Solving"],prompts:["در پروژه دانشگاهی چه خروجی ملموسی داشتید؟","در تیم چند نفره چه نقشی داشتید؟","چه چیزی را یاد گرفتید و کجا به کار بردید؟"]}
+};
+const THEMES=[["blue","آبی حرفه‌ای","#1d4ed8"],["emerald","سبز زمردی","#047857"],["violet","بنفش مدرن","#6d28d9"],["dark","مشکی مینیمال","#111827"],["orange","نارنجی خلاق","#ea580c"],["teal","فیروزه‌ای","#0f766e"]];
+let state=JSON.parse(localStorage.getItem("resume-builder-v1")||"null")||{field:"نرم‌افزار و فناوری اطلاعات",level:"میانی (۲ تا ۵ سال)",lang:"fa",name:"",title:"",email:"",phone:"",city:"",linkedin:"",website:"",summary:"",experiences:[{job:"",company:"",start:"",end:"",desc:""}],education:[{deg:"",school:"",year:""}],skills:[],languages:"",projects:"",certs:"",theme:"blue",layout:"two"};
+let step=0;
+const STEP_NAMES=["۱. حوزه و هدف","۲. اطلاعات فردی","۳. خلاصه حرفه‌ای","۴. تجربه کاری","۵. تحصیلات","۶. مهارت‌ها","۷. پروژه و مدارک","۸. تم و خروجی"];
+function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function saveLocal(){localStorage.setItem("resume-builder-v1",JSON.stringify(state));alert("ذخیره شد! با همین مرورگر و دستگاه، دفعه بعد رزومه‌تان برمی‌گردد.")}
+function clearAll(){if(!confirm("همه اطلاعات پاک شود؟"))return;localStorage.removeItem("resume-builder-v1");location.reload()}
+function set(k,v){state[k]=v;renderPreview()}
+function stepsBar(){document.getElementById("steps").innerHTML=STEP_NAMES.map((n,i)=>`<button class="${i===step?'on':''}" onclick="goStep(${i})">${n}</button>`).join("")}
+function goStep(i){step=i;renderStep()}
+function nextStep(){if(step<7){step++;renderStep()}else{renderStep()}}
+function prevStep(){if(step>0){step--;renderStep()}}
+function fieldOptions(){return Object.keys(FIELDS).map(f=>`<option ${state.field===f?'selected':''}>${f}</option>`).join("")}
+function renderStep(){
+ stepsBar();const b=document.getElementById("stepBox");const f=FIELDS[state.field]||FIELDS["عمومی / دانشجویی"];
+ if(step===0){b.innerHTML=`<h2 style="margin:0 0 6px">اول بگویید برای چه کاری اپلای می‌کنید؟</h2><p class="small">حوزه، پیشنهاد مهارت‌ها و سوال‌های دستاورد را عوض می‌کند؛ رزومه را برای همان آگهی تنظیم کنید، نه برای همه.</p>
+ <label>حوزه کاری</label><select onchange="state.field=this.value;state.skills=[...FIELDS[state.field].skills.slice(0,6)];renderStep()">${fieldOptions()}</select>
+ <label>عنوان شغلی هدف</label><input value="${esc(state.title)}" oninput="set('title',this.value)" list="titles" placeholder="مثلاً توسعه‌دهنده فرانت‌اند"><datalist id="titles">${f.titles.map(t=>`<option>${t}</option>`).join("")}</datalist>
+ <div class="grid2"><div><label>سطح تجربه</label><select onchange="set('level',this.value)">${["دانشجو / بدون سابقه","تازه‌کار (کمتر از ۲ سال)","میانی (۲ تا ۵ سال)","ارشد (۵ تا ۱۰ سال)","مدیر / ارشد اجرایی"].map(x=>`<option ${state.level===x?'selected':''}>${x}</option>`).join("")}</select></div>
+ <div><label>زبان رزومه</label><select onchange="set('lang',this.value)"><option value="fa" ${state.lang==='fa'?'selected':''}>فارسی</option><option value="en" ${state.lang==='en'?'selected':''}>English</option></select></div></div>
+ <div class="tip"><b>سوال‌های دستاورد برای حوزه شما:</b><br>• ${f.prompts.join("<br>• ")}</div>`}
+ else if(step===1){b.innerHTML=`<h2 style="margin:0 0 6px">اطلاعات فردی و تماس</h2><p class="small">ایمیل حرفه‌ای، شهر (بدون آدرس کامل) و لینکدین کافی است. عکس، تاریخ تولد و وضعیت تاهل را برای ATS و نسخه بین‌المللی حذف کنید.</p>
+ <div class="grid2"><div><label>نام و نام خانوادگی *</label><input value="${esc(state.name)}" oninput="set('name',this.value)" placeholder="مثلاً سارا محمدی"></div><div><label>عنوان شغلی</label><input value="${esc(state.title)}" oninput="set('title',this.value)"></div></div>
+ <div class="grid2"><div><label>ایمیل</label><input dir="ltr" style="text-align:left" value="${esc(state.email)}" oninput="set('email',this.value)"></div><div><label>تلفن</label><input dir="ltr" style="text-align:left" value="${esc(state.phone)}" oninput="set('phone',this.value)"></div></div>
+ <div class="grid2"><div><label>شهر</label><input value="${esc(state.city)}" oninput="set('city',this.value)" placeholder="تهران"></div><div><label>لینکدین / وب‌سایت</label><input dir="ltr" style="text-align:left" value="${esc(state.linkedin)}" oninput="set('linkedin',this.value)" placeholder="linkedin.com/in/..."></div></div>
+ <label>وب‌سایت / نمونه‌کار (اختیاری)</label><input dir="ltr" style="text-align:left" value="${esc(state.website)}" oninput="set('website',this.value)">`}
+ else if(step===2){b.innerHTML=`<h2 style="margin:0 0 6px">خلاصه حرفه‌ای — ۳ تا ۵ جمله</h2><div class="tip"><b>فرمول:</b> «[عنوان] با [X سال] تجربه در [حوزه]؛ [دستاورد عددی ۱] و [دستاورد عددی ۲]؛ به‌دنبال [نقش هدف] برای [اثر موردنظر].» اگر تازه‌کارید، به‌جای سابقه، پروژه و مهارت شاخص را بگویید.</div>
+ <label>خلاصه</label><textarea oninput="set('summary',this.value)" placeholder="مثلاً: توسعه‌دهنده فرانت‌اند با ۳ سال تجربه در ساخت وب‌اپ‌های React؛ سرعت لود محصول را ۴۰٪ بهبود دادم و نرخ تبدیل را ۱۸٪ بالا بردم. به‌دنبال نقش فرانت‌اند در تیمی محصول‌محور هستم.">${esc(state.summary)}</textarea>
+ <button class="btn btn-o" onclick="autoSummary()">✨ ساخت پیش‌نویس خودکار از اطلاعات من</button>`}
+ else if(step===3){b.innerHTML=`<h2 style="margin:0 0 6px">تجربه کاری — دستاورد بگویید، نه شرح وظیفه</h2><div class="tip"><b>فرمول هر بولت (CAR):</b> چالش → اقدام → نتیجه عددی. با فعل کنشی شروع کنید: «طراحی کردم، افزایش دادم، خودکار کردم، رهبری کردم». هر خط را با Enter جدا کنید.</div>`+state.experiences.map((e,i)=>`<div class="item"><h4>تجربه ${i+1} <button class="del" onclick="state.experiences.splice(${i},1);renderStep()">حذف ✕</button></h4>
+ <div class="grid2"><div><label>عنوان شغل</label><input value="${esc(e.job)}" oninput="state.experiences[${i}].job=this.value;renderPreview()"></div><div><label>شرکت</label><input value="${esc(e.company)}" oninput="state.experiences[${i}].company=this.value;renderPreview()"></div></div>
+ <div class="grid2"><div><label>شروع (مثلاً ۱۴۰۱)</label><input value="${esc(e.start)}" oninput="state.experiences[${i}].start=this.value;renderPreview()"></div><div><label>پایان / تاکنون</label><input value="${esc(e.end)}" oninput="state.experiences[${i}].end=this.value;renderPreview()"></div></div>
+ <label>دستاوردها (هر خط یک بولت)</label><textarea class="small" oninput="state.experiences[${i}].desc=this.value;renderPreview()">${esc(e.desc)}</textarea></div>`).join("")+`<button class="btn btn-o" onclick="state.experiences.push({job:'',company:'',start:'',end:'',desc:''});renderStep()">+ افزودن تجربه</button>`}
+ else if(step===4){b.innerHTML=`<h2 style="margin:0 0 6px">تحصیلات</h2><p class="small">تازه‌کارها تحصیل را بالاتر بیاورند؛ با تجربه‌ها پایین‌تر. معدل را فقط اگر بالای ۱۷ (یا 3.5 از ۴) است بنویسید.</p>`+state.education.map((e,i)=>`<div class="item"><h4>تحصیل ${i+1} <button class="del" onclick="state.education.splice(${i},1);renderStep()">حذف ✕</button></h4>
+ <div class="grid2"><div><label>مدرک و رشته</label><input value="${esc(e.deg)}" oninput="state.education[${i}].deg=this.value;renderPreview()"></div><div><label>دانشگاه / موسسه</label><input value="${esc(e.school)}" oninput="state.education[${i}].school=this.value;renderPreview()"></div></div>
+ <label>سال فارغ‌التحصیلی</label><input value="${esc(e.year)}" oninput="state.education[${i}].year=this.value;renderPreview()"></div>`).join("")+`<button class="btn btn-o" onclick="state.education.push({deg:'',school:'',year:''});renderStep()">+ افزودن تحصیل</button>`}
+ else if(step===5){b.innerHTML=`<h2 style="margin:0 0 6px">مهارت‌ها — دقیقاً همان کلمات آگهی</h2><div class="tip">هم مخفف و هم نام کامل را بنویسید: «SEO (بهینه‌سازی موتور جستجو)». مهارت‌های سخت را اول بگذارید؛ ATS به آن‌ها وزن بیشتری می‌دهد.</div>
+ <label>مهارت (با Enter اضافه کنید)</label><input id="skillIn" onkeydown="if(event.key==='Enter'){event.preventDefault();if(this.value.trim()){state.skills.push(this.value.trim());this.value='';renderStep()}}" placeholder="مثلاً React">
+ <div class="chips">${f.skills.map(s=>`<button onclick="if(!state.skills.includes('${s}')){state.skills.push('${s}');renderStep()}">+ ${s}</button>`).join("")}</div>
+ <div class="chips">${state.skills.map((s,i)=>`<button style="background:#eff6ff" onclick="state.skills.splice(${i},1);renderStep()">${esc(s)} ✕</button>`).join("")||"<span class='small'>هنوز مهارتی اضافه نشده</span>"}</div>
+ <label>زبان‌ها</label><input value="${esc(state.languages)}" oninput="set('languages',this.value)" placeholder="مثلاً انگلیسی — پیشرفته، آلمانی — متوسط">`}
+ else if(step===6){b.innerHTML=`<h2 style="margin:0 0 6px">پروژه‌ها و گواهینامه‌ها</h2><p class="small">برای دانشجو و تازه‌کار، پروژه جای تجربه را می‌گیرد: مسئله، کاری که کردید، نتیجه و لینک.</p>
+ <label>پروژه‌های شاخص (هر خط یک پروژه)</label><textarea oninput="set('projects',this.value)">${esc(state.projects)}</textarea>
+ <label>گواهینامه‌ها و دوره‌ها (هر خط یکی)</label><textarea oninput="set('certs',this.value)">${esc(state.certs)}</textarea>`}
+ else {b.innerHTML=`<h2 style="margin:0 0 6px">تم، چیدمان و خروجی</h2>
+ <label>تم رنگی</label><div class="themes">${THEMES.map(t=>`<button class="${state.theme===t[0]?'on':''}" onclick="state.theme='${t[0]}';document.documentElement.style.setProperty('--accent','${t[2]}');renderStep()"><span class="dot" style="background:${t[2]}"></span>${t[1]}</button>`).join("")}</div>
+ <label>چیدمان رزومه</label><select onchange="set('layout',this.value)"><option value="two" ${state.layout==='two'?'selected':''}>دو ستون مدرن (گرافیکی)</option><option value="one" ${state.layout==='one'?'selected':''}>تک ستون کلاسیک</option><option value="ats" ${state.layout==='ats'?'selected':''}>ATS ساده — تک‌ستون سیاه‌وسفید (بهترین شانس عبور از فیلتر)</option></select>
+ <div class="tip"><b>کدام خروجی برای کجاست؟</b> نسخه ATS را داخل فرم استخدام آپلود کنید. نسخه گرافیکی (PNG/PDF رنگی) را برای ایمیل مستقیم به مدیر، لینکدین و چاپ بفرستید.</div>
+ <div class="row"><button class="btn btn-d" onclick="downloadPDF()">⬇ دانلود PDF</button><button class="btn btn-p" onclick="downloadPNG()">🖼 دانلود عکس PNG</button></div>`}
+ renderPreview();
+}
+function autoSummary(){
+ const f=state.field;const t=state.title||f.titles[0];
+ state.summary=`${t} با تجربه در حوزه ${f}؛ تمرکز بر تحویل نتیجه ملموس با ${ (state.skills.slice(0,3).join("، ")||"مهارت‌های تخصصی")} . به‌دنبال نقش ${t} برای حل مسئله‌های واقعی و رشد محصول هستم. دستاوردهای عددی خود را در بخش تجربه اضافه کنید تا این خلاصه قوی‌تر شود.`;
+ renderStep();
+}
+function bullets(txt){return String(txt||"").split("\n").map(x=>x.trim()).filter(Boolean)}
+function renderPreview(){
+ const sheet=document.getElementById("sheet");const acc=THEMES.find(t=>t[0]===state.theme)?.[2]||"#1d4ed8";
+ sheet.style.setProperty("--acc",acc);sheet.className="sheet layout-"+state.layout+(state.lang==="en"?" ltr":"");
+ const isEn=state.lang==="en";
+ const L=isEn?{sum:"Professional Summary",exp:"Work Experience",edu:"Education",skills:"Skills",lang:"Languages",proj:"Projects",cert:"Certifications"}:{sum:"خلاصه حرفه‌ای",exp:"تجربه کاری",edu:"تحصیلات",skills:"مهارت‌ها",lang:"زبان‌ها",proj:"پروژه‌ها",cert:"گواهینامه‌ها"};
+ const contact=[state.email,state.phone,state.city,state.linkedin,state.website].filter(Boolean).join("  •  ");
+ const expHtml=state.experiences.filter(e=>e.job||e.company).map(e=>`<div style="margin-bottom:12px"><div class="job"><b>${esc(e.job)} — ${esc(e.company)}</b><span>${esc(e.start)} – ${esc(e.end)}</span></div>${bullets(e.desc).length?`<ul>${bullets(e.desc).map(d=>`<li>${esc(d)}</li>`).join("")}</ul>`:""}</div>`).join("")||`<p class="small">${isEn?"Add your experience in step 4.":"در مرحله ۴ تجربه‌تان را اضافه کنید."}</p>`;
+ const eduHtml=state.education.filter(e=>e.deg||e.school).map(e=>`<div style="margin-bottom:8px"><div class="job"><b>${esc(e.deg)}</b><span>${esc(e.year)}</span></div><div style="font-size:13px;color:#475569">${esc(e.school)}</div></div>`).join("");
+ const main=`${state.summary?`<h3>${L.sum}</h3><p>${esc(state.summary)}</p>`:""}${expHtml?`<h3>${L.exp}</h3>${expHtml}`:""}`;
+ const side=`${state.skills.length?`<h3>${L.skills}</h3><div class="skill-tags">${state.skills.map(s=>`<span>${esc(s)}</span>`).join("")}</div>`:""}${eduHtml?`<h3>${L.edu}</h3>${eduHtml}`:""}${state.languages?`<h3>${L.lang}</h3><p>${esc(state.languages)}</p>`:""}${state.projects?`<h3>${L.proj}</h3><ul>${bullets(state.projects).map(d=>`<li>${esc(d)}</li>`).join("")}</ul>`:""}${state.certs?`<h3>${L.cert}</h3><ul>${bullets(state.certs).map(d=>`<li>${esc(d)}</li>`).join("")}</ul>`:""}`;
+ let body="";
+ if(state.layout==="two"){body=`<div class="body"><div>${main}</div><div class="side">${side}</div></div>`}
+ else{body=`<div class="body">${main}${side}</div>`}
+ document.getElementById("resumeOut").innerHTML=`<div class="head"><h2>${esc(state.name)||(isEn?"Your Name":"نام شما")}</h2><div class="title">${esc(state.title)||state.field}</div><div class="contact">${esc(contact)}</div></div>${body}`;
+ // score
+ let score=0,msgs=[];
+ if(state.name&&state.email&&state.phone)score+=20;else msgs.push("اطلاعات تماس را کامل کنید (نام، ایمیل، تلفن).");
+ if(state.summary&&state.summary.length>80)score+=20;else msgs.push("خلاصه ۳ تا ۵ جمله‌ای بنویسید؛ فقط صفت کلی نباشد.");
+ const allDesc=state.experiences.map(e=>e.desc).join(" ");
+ if(/\d/.test(allDesc))score+=20;else msgs.push("دستاورد عددی اضافه کنید: درصد، مبلغ، تعداد یا زمان.");
+ if(state.skills.length>=5)score+=15;else msgs.push("دست‌کم ۵ مهارت مرتبط با آگهی اضافه کنید.");
+ if(state.experiences.some(e=>e.job&&e.company))score+=15;else msgs.push("دست‌کم یک تجربه یا پروژه شاخص اضافه کنید.");
+ if(state.education.some(e=>e.deg))score+=10;else msgs.push("تحصیلات را اضافه کنید.");
+ if(!msgs.length)msgs.push("عالی است! حالا نسخه ATS را هم بررسی کنید و برای هر آگهی، خلاصه و مهارت‌ها را با همان آگهی تنظیم کنید.");
+ document.getElementById("scoreNum").textContent=score;
+ document.getElementById("scoreList").innerHTML=msgs.map(m=>`<li>${m}</li>`).join("");
+ try{localStorage.setItem("resume-builder-v1",JSON.stringify(state))}catch(e){}
+}
+function downloadPDF(){window.print()}
+async function downloadPNG(){
+ const el=document.getElementById("sheet");
+ try{
+   const canvas=await html2canvas(el,{scale:2,backgroundColor:"#ffffff",useCORS:true});
+   const a=document.createElement("a");a.download="resume.png";a.href=canvas.toDataURL("image/png");a.click();
+ }catch(e){alert("ساخت عکس ناموفق بود. لطفاً اتصال اینترنت را بررسی کنید یا از چاپ → Save as PDF استفاده کنید.")}
+}
+function copyPlain(){
+ const t=document.getElementById("resumeOut").innerText;
+ navigator.clipboard.writeText(t).then(()=>alert("متن ساده رزومه کپی شد! آن را در فرم‌های ATS یا لینکدین بچسبانید.")).catch(()=>alert(t));
+}
+function loadSample(){
+ const f=FIELDS[state.field];
+ state.name=state.lang==="en"?"Sara Mohammadi":"سارا محمدی";
+ state.title=f.titles[0];
+ state.email="sara.mohammadi@example.com";state.phone="0912 345 6789";state.city="تهران";state.linkedin="linkedin.com/in/saramohammadi";
+ state.summary=state.lang==="en"?`${f.titles[0]} with 3 years of experience delivering measurable results. Improved key performance by 40% and led a project used by thousands of users.`:`${f.titles[0]} با ۳ سال تجربه در حوزه ${state.field}؛ با تمرکز بر نتیجه ملموس، شاخص کلیدی محصول را ۴۰٪ بهبود دادم و پروژه‌ای را به نتیجه رساندم که هزاران کاربر از آن استفاده می‌کنند.`;
+ state.experiences=[{job:f.titles[0],company:"شرکت نمونه",start:"۱۴۰۱",end:"تاکنون",desc:"شاخص کلیدی را با یک تغییر مشخص ۴۰٪ بهبود دادم\nفرآیندی را خودکار کردم که هفته‌ای ۱۰ ساعت زمان ذخیره کرد\nبا تیمی ۵ نفره روی محصولی کار کردم که ۱۲ هزار کاربر دارد"}];
+ state.education=[{deg:"کارشناسی مرتبط",school:"دانشگاه تهران",year:"۱۴۰۰"}];
+ state.skills=[...f.skills.slice(0,7)];state.languages="انگلیسی — پیشرفته";state.projects="پروژه نمونه: مسئله، راه‌حل و نتیجه عددی آن";state.certs="گواهینامه مرتبط (اختیاری)";
+ renderStep();
+}
+renderStep();
+</script>
+</body>
+</html>
